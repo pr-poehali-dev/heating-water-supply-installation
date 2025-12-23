@@ -260,7 +260,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4">Наши услуги</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
-              Что мы делаем
+              Наши специализации
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Полный спектр услуг по монтажу инженерных систем любой сложности
