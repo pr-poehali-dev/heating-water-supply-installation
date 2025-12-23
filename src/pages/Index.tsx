@@ -88,21 +88,39 @@ const Index = () => {
 
   const portfolio = [
     {
-      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/f745ceb5-04c4-46f6-b04b-d00284a91dfd.jpg',
       title: 'Система отопления в коттедже',
       description: 'Монтаж газового отопления площадью 250 м²',
       type: 'Частный дом'
     },
     {
-      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/120a8dea-6d7f-4e10-8857-eb965cc7a0b2.jpg',
-      title: 'Водоснабжение многоквартирного дома',
-      description: 'Комплексная замена труб в 3-этажном здании',
-      type: 'Многоквартирный дом'
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/5bf8ea62-5dae-473c-a679-130a96b2af70.jpg',
+      title: 'Бурение скважины и водоснабжение',
+      description: 'Бурение скважины 45м с установкой насосной станции',
+      type: 'Частный дом'
     },
     {
-      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/ada62ff8-f5f7-4370-a244-ce56e77d8dd1.jpg',
-      title: 'Канализация офисного центра',
-      description: 'Установка современной системы канализации',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/d0be5226-a1e4-45e6-8b1c-345f7a867df5.jpg',
+      title: 'Установка септика Топас',
+      description: 'Монтаж автономной канализации для загородного дома',
+      type: 'Частный дом'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/e14b60b3-16e7-4a02-ac88-0311341eec82.jpg',
+      title: 'Водяной теплый пол',
+      description: 'Укладка теплого пола в коттедже 180 м²',
+      type: 'Частный дом'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/91f8ae23-997b-4c91-9a37-a2070abaa858.jpg',
+      title: 'Сантехнические работы в квартире',
+      description: 'Полная замена водопровода и канализации',
+      type: 'Квартира'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/41751dff-cece-4e30-a0ee-3911171ccde3.jpg',
+      title: 'Вентиляция офисного здания',
+      description: 'Монтаж системы вентиляции и кондиционирования',
       type: 'Коммерческий объект'
     }
   ];
