@@ -46,35 +46,41 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     body_data = json.loads(event.get('body', '{}'))
     contact_req = ContactRequest(**body_data)
     
-    bot_token = os.environ['TELEGRAM_BOT_TOKEN']
-    chat_id = os.environ['TELEGRAM_CHAT_ID']
+    bot_token = os.environ['TELEGRAM_BOT_TOKEN'].strip()
+    chat_id = os.environ['TELEGRAM_CHAT_ID'].strip()
     
-    telegram_message = f"""
-🔔 <b>Новая заявка с сайта ТеплоМастер</b>
+    telegram_message = f"""🔔 Новая заявка с сайта ТеплоМастер
 
-👤 <b>Имя:</b> {contact_req.name}
-📞 <b>Телефон:</b> {contact_req.phone}
-📧 <b>Email:</b> {contact_req.email}
+👤 Имя: {contact_req.name}
+📞 Телефон: {contact_req.phone}
+📧 Email: {contact_req.email}
 
-💬 <b>Сообщение:</b>
-{contact_req.message}
-    """
+💬 Сообщение:
+{contact_req.message}"""
     
     telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
     data = {
         'chat_id': chat_id,
-        'text': telegram_message.strip(),
-        'parse_mode': 'HTML'
+        'text': telegram_message,
+        'parse_mode': 'Markdown'
     }
     
-    req = urllib.request.Request(
-        telegram_url,
-        data=json.dumps(data).encode('utf-8'),
-        headers={'Content-Type': 'application/json'}
-    )
-    
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode('utf-8'))
+    try:
+        req = urllib.request.Request(
+            telegram_url,
+            data=json.dumps(data).encode('utf-8'),
+            headers={'Content-Type': 'application/json'}
+        )
+        
+        with urllib.request.urlopen(req) as response:
+            result = json.loads(response.read().decode('utf-8'))
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            'body': json.dumps({'success': False, 'error': str(e)}),
+            'isBase64Encoded': False
+        }
     
     return {
         'statusCode': 200,
