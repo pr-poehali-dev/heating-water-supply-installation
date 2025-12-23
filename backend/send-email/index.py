@@ -1,8 +1,7 @@
 import json
 import os
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import urllib.request
+import urllib.parse
 from pydantic import BaseModel, Field, EmailStr
 from typing import Dict, Any
 
@@ -16,10 +15,10 @@ class ContactRequest(BaseModel):
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
-    Обработка заявок с сайта и отправка на email
+    Обработка заявок с сайта и отправка в Telegram
     Args: event - запрос с данными формы (name, phone, email, message)
           context - контекст выполнения функции
-    Returns: Результат отправки письма
+    Returns: Результат отправки сообщения в Telegram
     '''
     method: str = event.get('httpMethod', 'GET')
     
@@ -47,54 +46,39 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     body_data = json.loads(event.get('body', '{}'))
     contact_req = ContactRequest(**body_data)
     
-    smtp_host = os.environ['SMTP_HOST']
-    smtp_port = int(os.environ['SMTP_PORT'])
-    smtp_user = os.environ['SMTP_USER']
-    smtp_password = os.environ['SMTP_PASSWORD']
-    recipient_email = os.environ['EMAIL_RECIPIENT']
+    bot_token = os.environ['TELEGRAM_BOT_TOKEN']
+    chat_id = os.environ['TELEGRAM_CHAT_ID']
     
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = f'Новая заявка с сайта от {contact_req.name}'
-    msg['From'] = smtp_user
-    msg['To'] = recipient_email
+    telegram_message = f"""
+🔔 <b>Новая заявка с сайта ТеплоМастер</b>
+
+👤 <b>Имя:</b> {contact_req.name}
+📞 <b>Телефон:</b> {contact_req.phone}
+📧 <b>Email:</b> {contact_req.email}
+
+💬 <b>Сообщение:</b>
+{contact_req.message}
+    """
     
-    html_content = f'''
-    <html>
-      <body style="font-family: Arial, sans-serif; padding: 20px;">
-        <h2 style="color: #dc2626;">Новая заявка с сайта</h2>
-        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Имя:</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">{contact_req.name}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Телефон:</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">{contact_req.phone}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Email:</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">{contact_req.email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Сообщение:</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">{contact_req.message}</td>
-          </tr>
-        </table>
-      </body>
-    </html>
-    '''
+    telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+    data = {
+        'chat_id': chat_id,
+        'text': telegram_message.strip(),
+        'parse_mode': 'HTML'
+    }
     
-    html_part = MIMEText(html_content, 'html', 'utf-8')
-    msg.attach(html_part)
+    req = urllib.request.Request(
+        telegram_url,
+        data=json.dumps(data).encode('utf-8'),
+        headers={'Content-Type': 'application/json'}
+    )
     
-    with smtplib.SMTP(smtp_host, smtp_port) as server:
-        server.starttls()
-        server.login(smtp_user, smtp_password)
-        server.send_message(msg)
+    with urllib.request.urlopen(req) as response:
+        result = json.loads(response.read().decode('utf-8'))
     
     return {
         'statusCode': 200,
         'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-        'body': json.dumps({'success': True, 'message': 'Email sent successfully'}),
+        'body': json.dumps({'success': True, 'message': 'Telegram message sent successfully'}),
         'isBase64Encoded': False
     }
