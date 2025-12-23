@@ -486,7 +486,7 @@ const Index = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-secondary mb-2">Адрес</h3>
-                    <p className="text-gray-700">г. Москва, ул. Строителей, д. 15</p>
+                    <p className="text-gray-700">г. Астрахань, ул. Николая Островского, д. 61</p>
                     <p className="text-sm text-gray-600">Офис и выставочный зал</p>
                   </div>
                 </div>
@@ -529,7 +529,7 @@ const Index = () => {
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>+7 (495) 123-45-67</li>
                 <li>info@teploservice.ru</li>
-                <li>г. Москва, ул. Строителей, 15</li>
+                <li>г. Астрахань, ул. Николая Островского, 61</li>
               </ul>
             </div>
           </div>
