@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "name": "Valid contact form submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван Петров",
+        "phone": "+79001234567",
+        "email": "test@example.com",
+        "message": "Интересует монтаж отопления в частном доме"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Invalid email format",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван",
+        "phone": "+79001234567",
+        "email": "invalid-email",
+        "message": "Test message"
+      },
+      "expectedStatus": 422
+    }
+  ]
+}

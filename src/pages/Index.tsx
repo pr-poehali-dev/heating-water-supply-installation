@@ -17,13 +17,34 @@ const Index = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Заявка отправлена!",
-      description: "Мы свяжемся с вами в ближайшее время.",
-    });
-    setFormData({ name: '', phone: '', email: '', message: '' });
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/ca8498b5-d6f5-4172-a2be-245aa9e43c20', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Ошибка отправки');
+      }
+
+      toast({
+        title: "Заявка отправлена!",
+        description: "Мы свяжемся с вами в ближайшее время.",
+      });
+      setFormData({ name: '', phone: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить заявку. Попробуйте позже.",
+        variant: "destructive",
+      });
+    }
   };
 
   const services = [
@@ -247,7 +268,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-2 hover:border-primary/20">
+              <Card key={index} className="overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 hover:border-primary/20">
                 <div className="relative h-56 overflow-hidden">
                   <img 
                     src={service.image} 
