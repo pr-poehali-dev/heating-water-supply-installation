@@ -20,7 +20,7 @@ const Index = () => {
 
   const heroSlides = [
     {
-      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/82604410-8f3b-4dab-897b-37e887d65ce7.jpg',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/f270e05a-9721-448d-94b8-2c31f4387a4b.jpg',
       title: 'Монтаж отопления под ключ',
       subtitle: 'Установка газовых котлов, радиаторов и теплых полов'
     },
