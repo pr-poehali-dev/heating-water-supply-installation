@@ -1,12 +1,535 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Заявка отправлена!",
+      description: "Мы свяжемся с вами в ближайшее время.",
+    });
+    setFormData({ name: '', phone: '', email: '', message: '' });
+  };
+
+  const services = [
+    {
+      icon: 'Flame',
+      title: 'Монтаж отопления',
+      description: 'Проектирование и установка систем отопления для частных домов, квартир и коммерческих объектов. Радиаторы, теплые полы, котельные.',
+      features: ['Газовое отопление', 'Электрическое отопление', 'Теплые полы', 'Котельные под ключ']
+    },
+    {
+      icon: 'Droplets',
+      title: 'Водоснабжение',
+      description: 'Комплексные решения по водоснабжению: от скважины до крана. Монтаж насосных станций, фильтрация, разводка труб.',
+      features: ['Скважины и колодцы', 'Насосные станции', 'Системы фильтрации', 'Разводка труб']
+    },
+    {
+      icon: 'Waves',
+      title: 'Канализация',
+      description: 'Установка автономных и централизованных систем канализации. Септики, станции биоочистки, ливневая канализация.',
+      features: ['Септики', 'Станции очистки', 'Ливневая канализация', 'Дренажные системы']
+    }
+  ];
+
+  const portfolio = [
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg',
+      title: 'Система отопления в коттедже',
+      description: 'Монтаж газового отопления площадью 250 м²',
+      type: 'Частный дом'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/120a8dea-6d7f-4e10-8857-eb965cc7a0b2.jpg',
+      title: 'Водоснабжение многоквартирного дома',
+      description: 'Комплексная замена труб в 3-этажном здании',
+      type: 'Многоквартирный дом'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/ada62ff8-f5f7-4370-a244-ce56e77d8dd1.jpg',
+      title: 'Канализация офисного центра',
+      description: 'Установка современной системы канализации',
+      type: 'Коммерческий объект'
+    }
+  ];
+
+  const advantages = [
+    {
+      icon: 'Award',
+      title: 'Опыт 15+ лет',
+      description: 'Успешно реализовано более 500 проектов'
+    },
+    {
+      icon: 'Shield',
+      title: 'Гарантия качества',
+      description: 'Письменная гарантия на все работы до 5 лет'
+    },
+    {
+      icon: 'Clock',
+      title: 'Соблюдение сроков',
+      description: 'Выполняем работы точно в установленные сроки'
+    },
+    {
+      icon: 'Users',
+      title: 'Опытная команда',
+      description: 'Сертифицированные специалисты с профильным образованием'
+    },
+    {
+      icon: 'FileCheck',
+      title: 'Все документы',
+      description: 'Полный пакет разрешительной документации'
+    },
+    {
+      icon: 'Headphones',
+      title: 'Поддержка 24/7',
+      description: 'Аварийный выезд и консультации в любое время'
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Александр Петров',
+      role: 'Частный дом, 200 м²',
+      text: 'Отличная работа! Установили отопление в новом доме. Всё сделано качественно, профессионально, в срок. Зима показала - система работает безупречно.',
+      rating: 5
+    },
+    {
+      name: 'Марина Соколова',
+      role: 'Квартира, ЖК "Солнечный"',
+      text: 'Заменили всю сантехнику и трубы в квартире. Ребята работали аккуратно, убирали за собой. Цена соответствует качеству. Рекомендую!',
+      rating: 5
+    },
+    {
+      name: 'Игорь Волков',
+      role: 'Коммерческий объект',
+      text: 'Делали систему отопления для производственного цеха. Сложный проект, но справились на отлично. Профессионалы своего дела.',
+      rating: 5
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: 'Сколько стоят ваши услуги?',
+      answer: 'Стоимость зависит от объема работ, площади объекта и выбранного оборудования. Мы предоставляем бесплатный выезд на объект и составление сметы. Средняя стоимость монтажа отопления - от 2000 руб/м², водоснабжения - от 1500 руб/м², канализации - от 1800 руб/м².'
+    },
+    {
+      question: 'Какие гарантии вы предоставляете?',
+      answer: 'На все монтажные работы мы даем гарантию от 3 до 5 лет в зависимости от типа системы. На оборудование действует гарантия производителя. Мы также предоставляем бесплатное сервисное обслуживание в течение первого года.'
+    },
+    {
+      question: 'Как долго длятся работы?',
+      answer: 'Сроки зависят от сложности проекта. Монтаж отопления в частном доме 150-200 м² занимает 7-10 дней. Замена труб в квартире - 3-5 дней. Установка септика - 2-3 дня. Точные сроки определяются после осмотра объекта.'
+    },
+    {
+      question: 'Работаете ли вы с юридическими лицами?',
+      answer: 'Да, мы работаем как с физическими, так и с юридическими лицами. Предоставляем полный пакет документов, работаем по договору, выдаем акты выполненных работ и все необходимые сертификаты.'
+    },
+    {
+      question: 'Можно ли вызвать специалиста для консультации?',
+      answer: 'Да, мы предоставляем бесплатный выезд инженера на объект для оценки работ и консультации. Специалист проведет замеры, ответит на все вопросы и составит предварительную смету. Заявку можно оставить через форму на сайте или по телефону.'
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <Icon name="Wrench" size={28} className="text-primary" />
+            <span className="text-xl font-bold text-secondary">ТеплоСервис</span>
+          </div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="#services" className="text-gray-700 hover:text-primary transition-colors">Услуги</a>
+            <a href="#portfolio" className="text-gray-700 hover:text-primary transition-colors">Портфолио</a>
+            <a href="#advantages" className="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
+            <a href="#testimonials" className="text-gray-700 hover:text-primary transition-colors">Отзывы</a>
+            <a href="#faq" className="text-gray-700 hover:text-primary transition-colors">FAQ</a>
+            <a href="#contact" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
+          </nav>
+          <Button asChild className="hidden md:flex">
+            <a href="#contact">Заказать звонок</a>
+          </Button>
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Icon name="Menu" size={24} />
+          </Button>
+        </div>
+      </header>
+
+      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+                Профессиональный монтаж с 2009 года
+              </Badge>
+              <h1 className="text-5xl md:text-6xl font-bold text-secondary mb-6 leading-tight">
+                Монтаж отопления, водоснабжения и канализации
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Комплексные инженерные решения для частных домов, квартир и коммерческих объектов. Гарантия качества и соблюдение сроков.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="text-lg" asChild>
+                  <a href="#contact">Получить консультацию</a>
+                </Button>
+                <Button size="lg" variant="outline" className="text-lg" asChild>
+                  <a href="#portfolio">Наши работы</a>
+                </Button>
+              </div>
+              <div className="mt-12 grid grid-cols-3 gap-6">
+                <div>
+                  <div className="text-4xl font-bold text-primary">500+</div>
+                  <div className="text-sm text-gray-600">Проектов</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-primary">15</div>
+                  <div className="text-sm text-gray-600">Лет опыта</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-primary">98%</div>
+                  <div className="text-sm text-gray-600">Довольных клиентов</div>
+                </div>
+              </div>
+            </div>
+            <div className="relative animate-slide-in">
+              <img 
+                src="https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg" 
+                alt="Профессиональный монтаж"
+                className="rounded-2xl shadow-2xl w-full"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100">
+                <div className="flex items-center space-x-3">
+                  <Icon name="Shield" size={32} className="text-primary" />
+                  <div>
+                    <div className="font-bold text-secondary">Гарантия 5 лет</div>
+                    <div className="text-sm text-gray-600">на все работы</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Наши услуги</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Что мы делаем
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Полный спектр услуг по монтажу инженерных систем любой сложности
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-2 hover:border-primary/20">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <Icon name={service.icon as any} size={32} className="text-primary" />
+                  </div>
+                  <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  <CardDescription className="text-base">{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start space-x-2">
+                        <Icon name="Check" size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Портфолио</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Наши работы
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Примеры успешно реализованных проектов
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {portfolio.map((project, index) => (
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                  <Badge className="absolute top-4 right-4 bg-white text-secondary">
+                    {project.type}
+                  </Badge>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Преимущества</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Почему выбирают нас
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Мы гарантируем качество, надежность и профессионализм
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <Icon name={advantage.icon as any} size={36} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-secondary mb-2">{advantage.title}</h3>
+                <p className="text-gray-600">{advantage.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Отзывы</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Что говорят клиенты
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Мнение тех, кто уже воспользовался нашими услугами
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-xl transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                  <CardDescription className="text-sm">{testimonial.role}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700 italic">"{testimonial.text}"</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">FAQ</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Частые вопросы
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Ответы на самые популярные вопросы
+            </p>
+          </div>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqItems.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6 bg-gray-50">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-700 text-base">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Контакты</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+              Оставьте заявку
+            </h2>
+            <p className="text-xl text-gray-600">
+              Мы свяжемся с вами в течение 15 минут
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <Card className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Ваше имя *
+                    </label>
+                    <Input
+                      required
+                      placeholder="Иван Иванов"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Телефон *
+                    </label>
+                    <Input
+                      required
+                      type="tel"
+                      placeholder="+7 (999) 123-45-67"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      placeholder="ivan@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Сообщение
+                    </label>
+                    <Textarea
+                      placeholder="Расскажите о вашем проекте..."
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    />
+                  </div>
+                  <Button type="submit" size="lg" className="w-full">
+                    Отправить заявку
+                  </Button>
+                </form>
+              </Card>
+            </div>
+            <div className="space-y-6">
+              <Card className="p-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Icon name="Phone" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-secondary mb-2">Телефон</h3>
+                    <p className="text-gray-700 text-lg font-semibold">+7 (495) 123-45-67</p>
+                    <p className="text-sm text-gray-600">Ежедневно с 8:00 до 22:00</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Icon name="Mail" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-secondary mb-2">Email</h3>
+                    <p className="text-gray-700">info@teploservice.ru</p>
+                    <p className="text-sm text-gray-600">Ответим в течение часа</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Icon name="MapPin" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-secondary mb-2">Адрес</h3>
+                    <p className="text-gray-700">г. Москва, ул. Строителей, д. 15</p>
+                    <p className="text-sm text-gray-600">Офис и выставочный зал</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-secondary text-white py-12 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Icon name="Wrench" size={24} />
+                <span className="text-xl font-bold">ТеплоСервис</span>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Профессиональный монтаж инженерных систем с 2009 года
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Услуги</h4>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li><a href="#services" className="hover:text-white transition-colors">Отопление</a></li>
+                <li><a href="#services" className="hover:text-white transition-colors">Водоснабжение</a></li>
+                <li><a href="#services" className="hover:text-white transition-colors">Канализация</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Компания</h4>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li><a href="#portfolio" className="hover:text-white transition-colors">Портфолио</a></li>
+                <li><a href="#testimonials" className="hover:text-white transition-colors">Отзывы</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Контакты</h4>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>+7 (495) 123-45-67</li>
+                <li>info@teploservice.ru</li>
+                <li>г. Москва, ул. Строителей, 15</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-600 pt-8 text-center text-sm text-gray-400">
+            <p>© 2024 ТеплоСервис. Все права защищены.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
