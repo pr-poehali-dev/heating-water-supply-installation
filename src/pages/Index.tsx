@@ -462,7 +462,7 @@ const Index = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-secondary mb-2">Телефон</h3>
-                    <p className="text-gray-700 text-lg font-semibold">+7 (495) 123-45-67</p>
+                    <p className="text-gray-700 text-lg font-semibold">+7 (927) 071-73-09</p>
                     <p className="text-sm text-gray-600">Ежедневно с 8:00 до 22:00</p>
                   </div>
                 </div>
@@ -527,7 +527,7 @@ const Index = () => {
             <div>
               <h4 className="font-bold mb-4">Контакты</h4>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>+7 (495) 123-45-67</li>
+                <li>+7 (927) 071-73-09</li>
                 <li>info@teploservice.ru</li>
                 <li>г. Астрахань, ул. Николая Островского, 61</li>
               </ul>
