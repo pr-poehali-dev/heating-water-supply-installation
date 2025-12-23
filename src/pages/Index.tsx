@@ -1,22 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
-  const { toast } = useToast();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    message: ''
-  });
 
   const heroSlides = [
     {
@@ -42,36 +32,6 @@ const Index = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const response = await fetch('https://functions.poehali.dev/ca8498b5-d6f5-4172-a2be-245aa9e43c20', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Ошибка отправки');
-      }
-
-      toast({
-        title: "Заявка отправлена!",
-        description: "Мы свяжемся с вами в ближайшее время.",
-      });
-      setFormData({ name: '', phone: '', email: '', message: '' });
-    } catch (error) {
-      toast({
-        title: "Ошибка",
-        description: "Не удалось отправить заявку. Попробуйте позже.",
-        variant: "destructive",
-      });
-    }
-  };
 
   const services = [
     {
@@ -533,105 +493,50 @@ const Index = () => {
           <div className="text-center mb-12">
             <Badge className="mb-4">Контакты</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
-              Оставьте заявку
+              Свяжитесь с нами
             </h2>
             <p className="text-xl text-gray-600">
-              Мы свяжемся с вами в течение 15 минут
+              Мы всегда рады ответить на ваши вопросы
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <Card className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Ваше имя *
-                    </label>
-                    <Input
-                      required
-                      placeholder="Иван Иванов"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Телефон *
-                    </label>
-                    <Input
-                      required
-                      type="tel"
-                      placeholder="+7 (999) 123-45-67"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <Input
-                      type="email"
-                      placeholder="ivan@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Сообщение
-                    </label>
-                    <Textarea
-                      placeholder="Расскажите о вашем проекте..."
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full">
-                    Отправить заявку
-                  </Button>
-                </form>
-              </Card>
-            </div>
-            <div className="space-y-6">
-              <Card className="p-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon name="Phone" size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-secondary mb-2">Телефон</h3>
-                    <p className="text-gray-700 text-lg font-semibold">+7 (927) 071-73-09</p>
-                    <p className="text-sm text-gray-600">Ежедневно с 8:00 до 22:00</p>
-                  </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <Card className="p-6">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Icon name="Phone" size={32} className="text-primary" />
                 </div>
-              </Card>
-              <Card className="p-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon name="Mail" size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-secondary mb-2">Email</h3>
-                    <p className="text-gray-700">heating30@mail.ru</p>
-                    <p className="text-sm text-gray-600">Ответим в течение часа</p>
-                  </div>
+                <div>
+                  <h3 className="font-bold text-lg text-secondary mb-2">Телефон</h3>
+                  <p className="text-gray-700 text-lg font-semibold">+7 (927) 071-73-09</p>
+                  <p className="text-sm text-gray-600">Ежедневно с 8:00 до 22:00</p>
                 </div>
-              </Card>
-              <Card className="p-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon name="MapPin" size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-secondary mb-2">Адрес</h3>
-                    <p className="text-gray-700">г. Астрахань, ул. Николая Островского, д. 61</p>
-                    <p className="text-sm text-gray-600">Офис и выставочный зал</p>
-                  </div>
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Icon name="Mail" size={32} className="text-primary" />
                 </div>
-              </Card>
-            </div>
+                <div>
+                  <h3 className="font-bold text-lg text-secondary mb-2">Email</h3>
+                  <p className="text-gray-700">heating30@mail.ru</p>
+                  <p className="text-sm text-gray-600">Ответим в течение часа</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Icon name="MapPin" size={32} className="text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-secondary mb-2">Адрес</h3>
+                  <p className="text-gray-700">г. Астрахань, ул. Николая Островского, д. 61</p>
+                  <p className="text-sm text-gray-600">Офис и выставочный зал</p>
+                </div>
+              </div>
+            </Card>
+          </div>
           </div>
         </div>
       </section>
