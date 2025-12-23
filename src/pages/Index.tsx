@@ -230,6 +230,55 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "ТеплоМастер",
+          "description": "Профессиональный монтаж отопления, водоснабжения и канализации",
+          "image": "https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/f270e05a-9721-448d-94b8-2c31f4387a4b.jpg",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RU"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "300"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Услуги по монтажу инженерных систем",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Монтаж отопления",
+                  "description": "Установка газовых котлов, радиаторов и теплых полов"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Водоснабжение",
+                  "description": "Бурение скважин, установка насосных станций"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Монтаж канализации",
+                  "description": "Установка септиков и станций биоочистки"
+                }
+              }
+            ]
+          }
+        })}
+      </script>
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -324,10 +373,10 @@ const Index = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4">Наши услуги</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
-              Наши специализации
+              Профессиональный монтаж инженерных систем под ключ
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Полный спектр услуг по монтажу инженерных систем любой сложности
+              Установка отопления, водоснабжения и канализации для частных домов и коммерческих объектов по всей России
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
