@@ -127,24 +127,34 @@ const Index = () => {
 
   const advantages = [
     {
-      icon: 'Cpu',
-      title: 'Современные технологии',
-      description: 'Используем проверенное оборудование европейских и российских производителей'
+      icon: 'Award',
+      title: 'Опыт более 10 лет',
+      description: 'Более 500 успешно реализованных проектов любой сложности'
+    },
+    {
+      icon: 'Users',
+      title: 'Квалифицированные специалисты',
+      description: 'Все наши монтажники имеют допуски и сертификаты на проведение работ'
+    },
+    {
+      icon: 'Shield',
+      title: 'Гарантия до 3 лет',
+      description: 'Письменная гарантия на все монтажные работы и установленное оборудование'
+    },
+    {
+      icon: 'Clock',
+      title: 'Соблюдение сроков',
+      description: 'Работаем строго по графику, прописанному в договоре'
+    },
+    {
+      icon: 'FileCheck',
+      title: 'Официальный договор',
+      description: 'Прозрачные условия сотрудничества с юридическими гарантиями'
     },
     {
       icon: 'Wrench',
       title: 'Сервисное обслуживание',
-      description: 'Предоставляем гарантийное и постгарантийное обслуживание всех систем'
-    },
-    {
-      icon: 'FileCheck',
-      title: 'Работаем по договору',
-      description: 'Официальное оформление, прозрачные условия, защита ваших интересов'
-    },
-    {
-      icon: 'Shield',
-      title: 'Гарантия 3 года',
-      description: 'Письменная гарантия на все монтажные работы сроком до 3 лет'
+      description: 'Предоставляем полный цикл обслуживания установленных систем'
     }
   ];
 
@@ -359,15 +369,17 @@ const Index = () => {
               Мы гарантируем качество, надежность и профессионализм
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advantages.map((advantage, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Icon name={advantage.icon as any} size={36} className="text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-secondary mb-2">{advantage.title}</h3>
-                <p className="text-gray-600">{advantage.description}</p>
-              </div>
+              <Card key={index} className="border-2 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                    <Icon name={advantage.icon as any} size={32} className="text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-secondary">{advantage.title}</CardTitle>
+                  <CardDescription className="text-base">{advantage.description}</CardDescription>
+                </CardHeader>
+              </Card>
             ))}
           </div>
         </div>
