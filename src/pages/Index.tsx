@@ -28,37 +28,37 @@ const Index = () => {
 
   const services = [
     {
-      icon: 'Flame',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/9545c593-f4e3-4b40-80da-adc8187ffa52.jpg',
       title: 'Монтаж отопления',
       description: 'Установка современных систем отопления любой сложности. Работаем с газовыми, электрическими котлами, радиаторами, теплыми полами.',
       features: ['Газовые котлы и системы', 'Радиаторное отопление', 'Теплые полы', 'Котельные под ключ']
     },
     {
-      icon: 'Droplets',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/6c4c606d-ceb8-4914-9c88-f5d897fb3088.jpg',
       title: 'Водоснабжение',
       description: 'Монтаж систем водоснабжения для частных домов и коммерческих объектов. От бурения скважин до разводки труб.',
       features: ['Бурение скважин', 'Насосные станции', 'Системы очистки воды', 'Внутренняя разводка']
     },
     {
-      icon: 'Waves',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/958cecc1-70a0-4a16-ab17-eef89659aa1c.jpg',
       title: 'Монтаж канализации',
       description: 'Проектирование и установка систем канализации. Автономные септики, станции биологической очистки, ливневая канализация.',
       features: ['Септики и ЛОС', 'Внутренняя канализация', 'Ливневая канализация', 'Дренажные системы']
     },
     {
-      icon: 'Container',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/09a10dca-c838-48a3-91df-fe2a475335cf.jpg',
       title: 'Установка септика',
       description: 'Подбор и монтаж септиков и станций биоочистки. Работаем с ведущими производителями. Гарантия на монтаж.',
       features: ['Септики Топас', 'Септики Евролос', 'Станции Астра', 'Накопительные емкости']
     },
     {
-      icon: 'Layers',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/73ceebcd-7354-4cc2-b8fb-bc4cfa2fbc5d.jpg',
       title: 'Монтаж теплого пола',
       description: 'Установка водяных и электрических теплых полов. Равномерный прогрев помещения, экономия энергии.',
       features: ['Водяной теплый пол', 'Электрический теплый пол', 'Инфракрасные системы', 'Терморегуляция']
     },
     {
-      icon: 'FileText',
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/77f3500b-5089-42db-b50e-c95f0e46addd.jpg',
       title: 'Проектирование систем',
       description: 'Разработка проектов инженерных систем. Расчет нагрузок, подбор оборудования, согласование документации.',
       features: ['Проект отопления', 'Проект водоснабжения', 'Проект канализации', 'Теплотехнический расчет']
@@ -247,11 +247,15 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-2 hover:border-primary/20">
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-2 hover:border-primary/20">
+                <div className="relative h-56 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
                 <CardHeader>
-                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                    <Icon name={service.icon as any} size={32} className="text-primary" />
-                  </div>
                   <CardTitle className="text-2xl">{service.title}</CardTitle>
                   <CardDescription className="text-base">{service.description}</CardDescription>
                 </CardHeader>
