@@ -159,7 +159,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Icon name="Wrench" size={28} className="text-primary" />
-            <span className="text-xl font-bold text-secondary">ТеплоСервис</span>
+            <span className="text-xl font-bold text-secondary">ТеплоМастер</span>
           </div>
           <nav className="hidden md:flex space-x-8">
             <a href="#services" className="text-gray-700 hover:text-primary transition-colors">Услуги</a>
@@ -474,7 +474,7 @@ const Index = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-secondary mb-2">Email</h3>
-                    <p className="text-gray-700">info@teploservice.ru</p>
+                    <p className="text-gray-700">heating30@mail.ru</p>
                     <p className="text-sm text-gray-600">Ответим в течение часа</p>
                   </div>
                 </div>
@@ -502,10 +502,10 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Icon name="Wrench" size={24} />
-                <span className="text-xl font-bold">ТеплоСервис</span>
+                <span className="text-xl font-bold">ТеплоМастер</span>
               </div>
               <p className="text-gray-300 text-sm">
-                Профессиональный монтаж инженерных систем с 2009 года
+                Профессиональный монтаж инженерных систем с 2014 года
               </p>
             </div>
             <div>
@@ -528,13 +528,13 @@ const Index = () => {
               <h4 className="font-bold mb-4">Контакты</h4>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>+7 (927) 071-73-09</li>
-                <li>info@teploservice.ru</li>
+                <li>heating30@mail.ru</li>
                 <li>г. Астрахань, ул. Николая Островского, 61</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-600 pt-8 text-center text-sm text-gray-400">
-            <p>© 2024 ТеплоСервис. Все права защищены.</p>
+            <p>© 2024 ТеплоМастер. Все права защищены.</p>
           </div>
         </div>
       </footer>
