@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,12 +10,38 @@ import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const { toast } = useToast();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     message: ''
   });
+
+  const heroSlides = [
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/82604410-8f3b-4dab-897b-37e887d65ce7.jpg',
+      title: 'Монтаж отопления под ключ',
+      subtitle: 'Установка газовых котлов, радиаторов и теплых полов'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/564fd1bb-7a2d-499a-9f3d-622015d6e71b.jpg',
+      title: 'Водоснабжение и канализация',
+      subtitle: 'От скважины до внутренней разводки труб'
+    },
+    {
+      image: 'https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/9f16bca9-1a59-4470-a9e8-a533f59651d9.jpg',
+      title: 'Теплые полы любой сложности',
+      subtitle: 'Водяные и электрические системы подогрева'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -228,27 +254,34 @@ const Index = () => {
       </header>
 
       <section className="relative pt-20 h-screen w-full overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg" 
-            alt="Профессиональный монтаж"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
-        </div>
+        {heroSlides.map((slide, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              currentSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img 
+              src={slide.image} 
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+          </div>
+        ))}
         
         <div className="relative container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-3xl text-white animate-fade-in">
-            <Badge className="mb-6 bg-primary text-white border-primary">
+          <div className="max-w-3xl text-white">
+            <Badge className="mb-6 bg-primary text-white border-primary animate-fade-in">
               Работаем с 2014 года
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Монтаж отопления, водоснабжения и канализации
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight animate-fade-in">
+              {heroSlides[currentSlide].title}
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Современные инженерные системы для создания комфорта и удобства в вашем доме. Профессиональный подход и качественное оборудование.
+            <p className="text-xl md:text-2xl mb-8 text-gray-200 animate-fade-in">
+              {heroSlides[currentSlide].subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in">
               <Button size="lg" className="text-lg bg-primary hover:bg-primary/90" asChild>
                 <a href="#contact">Получить консультацию</a>
               </Button>
@@ -256,7 +289,7 @@ const Index = () => {
                 <a href="#portfolio">Наши работы</a>
               </Button>
             </div>
-            <div className="grid grid-cols-3 gap-6 max-w-xl">
+            <div className="grid grid-cols-3 gap-6 max-w-xl animate-fade-in">
               <div className="backdrop-blur-sm bg-white/10 p-4 rounded-lg">
                 <div className="text-4xl font-bold text-white">10+</div>
                 <div className="text-sm text-gray-200">Лет на рынке</div>
@@ -271,6 +304,18 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentSlide === index ? 'bg-white w-8' : 'bg-white/50'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
