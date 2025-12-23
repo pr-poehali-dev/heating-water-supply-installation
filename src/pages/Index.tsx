@@ -227,56 +227,47 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-                Работаем с 2014 года
-              </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold text-secondary mb-6 leading-tight">
-                Монтаж отопления, водоснабжения и канализации
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Современные инженерные системы для создания комфорта и удобства в вашем доме. Профессиональный подход и качественное оборудование.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg" asChild>
-                  <a href="#contact">Получить консультацию</a>
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg" asChild>
-                  <a href="#portfolio">Наши работы</a>
-                </Button>
-              </div>
-              <div className="mt-12 grid grid-cols-3 gap-6">
-                <div>
-                  <div className="text-4xl font-bold text-primary">10+</div>
-                  <div className="text-sm text-gray-600">Лет на рынке</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-primary">300+</div>
-                  <div className="text-sm text-gray-600">Довольных клиентов</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-primary">3</div>
-                  <div className="text-sm text-gray-600">Года гарантии</div>
-                </div>
-              </div>
+      <section className="relative pt-20 h-screen w-full overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg" 
+            alt="Профессиональный монтаж"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+        </div>
+        
+        <div className="relative container mx-auto px-4 h-full flex items-center">
+          <div className="max-w-3xl text-white animate-fade-in">
+            <Badge className="mb-6 bg-primary text-white border-primary">
+              Работаем с 2014 года
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Монтаж отопления, водоснабжения и канализации
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+              Современные инженерные системы для создания комфорта и удобства в вашем доме. Профессиональный подход и качественное оборудование.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Button size="lg" className="text-lg bg-primary hover:bg-primary/90" asChild>
+                <a href="#contact">Получить консультацию</a>
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white/20" asChild>
+                <a href="#portfolio">Наши работы</a>
+              </Button>
             </div>
-            <div className="relative animate-slide-in">
-              <img 
-                src="https://cdn.poehali.dev/projects/cb7dda03-0447-46cd-aa6c-765262b7a64c/files/b62eef50-a906-465f-a1c3-871f8d712e01.jpg" 
-                alt="Профессиональный монтаж"
-                className="rounded-2xl shadow-2xl w-full"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100">
-                <div className="flex items-center space-x-3">
-                  <Icon name="Shield" size={32} className="text-primary" />
-                  <div>
-                    <div className="font-bold text-secondary">Гарантия 3 года</div>
-                    <div className="text-sm text-gray-600">на все работы</div>
-                  </div>
-                </div>
+            <div className="grid grid-cols-3 gap-6 max-w-xl">
+              <div className="backdrop-blur-sm bg-white/10 p-4 rounded-lg">
+                <div className="text-4xl font-bold text-white">10+</div>
+                <div className="text-sm text-gray-200">Лет на рынке</div>
+              </div>
+              <div className="backdrop-blur-sm bg-white/10 p-4 rounded-lg">
+                <div className="text-4xl font-bold text-white">300+</div>
+                <div className="text-sm text-gray-200">Довольных клиентов</div>
+              </div>
+              <div className="backdrop-blur-sm bg-white/10 p-4 rounded-lg">
+                <div className="text-4xl font-bold text-white">3</div>
+                <div className="text-sm text-gray-200">Года гарантии</div>
               </div>
             </div>
           </div>
