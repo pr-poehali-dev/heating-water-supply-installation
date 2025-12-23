@@ -544,7 +544,7 @@ const Index = () => {
           href="https://t.me/Avikvstanet"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-14 h-14 md:w-16 md:h-16 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group"
+          className="w-14 h-14 md:w-16 md:h-16 bg-primary hover:bg-primary/90 text-white rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group"
           aria-label="Написать в Telegram"
         >
           <svg
@@ -554,14 +554,14 @@ const Index = () => {
           >
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-1.969 9.28-2.781 12.311-.344 1.284-.694 1.714-1.139 1.756-.968.089-1.704-.64-2.643-1.253-1.469-.959-2.299-1.556-3.725-2.489-1.647-1.079-.579-1.673.359-2.642.245-.253 4.508-4.134 4.593-4.487.011-.044.021-.208-.078-.294-.099-.087-.245-.057-.35-.034-.149.033-2.525 1.605-7.128 4.716-.674.463-1.285.688-1.832.675-.603-.014-1.764-.341-2.627-.622-.874-.281-1.568-.429-1.507-.906.032-.248.385-.502 1.061-.762 4.146-1.805 6.909-2.998 8.29-3.58 3.943-1.641 4.764-1.927 5.298-1.935.118-.002.381.027.552.166.145.117.185.275.204.386.019.111.042.364.024.562z"/>
           </svg>
-          <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-red-500 rounded-full animate-ping"></span>
+          <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-primary/80 rounded-full animate-ping"></span>
         </a>
 
         <a
           href="https://wa.me/79931177207"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-14 h-14 md:w-16 md:h-16 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group"
+          className="w-14 h-14 md:w-16 md:h-16 bg-secondary hover:bg-secondary/90 text-white rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group"
           aria-label="Написать в WhatsApp"
         >
           <svg
